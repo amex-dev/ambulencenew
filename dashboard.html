@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body { font-family: Arial; background: #eef2f3; padding: 20px; }
+        h2 { text-align: center; }
+        form {
+            width: 400px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, button {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+        .alert {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+            margin: 10px;
+        }
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 80%;
+            background: white;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #6b8e23;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Mumbai Ambulance Alerting System 🚑</h2>
+
+<form method="POST" action="/alert">
+    <label>Ambulance ID</label>
+    <input type="text" name="amb_id" required>
+
+    <label>From</label>
+    <input type="text" name="from_loc" required>
+
+    <label>To</label>
+    <input type="text" name="to_loc" required>
+
+    <button type="submit">Activate Green Corridor</button>
+</form>
+
+{% if message %}
+<div class="alert">{{ message }}</div>
+{% endif %}
+
+<h3 style="text-align:center;">Available Routes & Signals (Mumbai)</h3>
+
+<div>
+    {{ table | safe }}
+</div>
+
+</body>
+</html>
